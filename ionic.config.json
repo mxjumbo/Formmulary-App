@@ -1,0 +1,7 @@
+{
+  "name": "formmulary",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
