@@ -1,4 +1,8 @@
 import { Component, OnInit, ViewChild,Renderer } from '@angular/core';
+import { DocumentViewer, DocumentViewerOptions } from '@ionic-native/document-viewer/ngx';
+import {File} from '@ionic-native/file/ngx';
+import {FileOpener}from '@ionic-native/file-opener/ngx';
+import { Platform } from '@ionic/angular';
 //import {IonicModule} from '@ionic/angular';
 
 @Component({
@@ -14,8 +18,13 @@ export class AccordionComponent implements OnInit {
   
   visibleMarine=false;
   visibleFormulary=false;
-  constructor(public renderer:Renderer) { 
+
+  
+  
+
+  constructor(public renderer:Renderer, private document: DocumentViewer, private platform:Platform, private file:File, private fileOpener: FileOpener) { 
     //console.log(this.cardContent.nativeElement);
+    
   }
 
   ngOnInit() {
@@ -59,4 +68,26 @@ export class AccordionComponent implements OnInit {
     this.visibleMarine = !this.visibleMarine;
   }*/
 
+  
+
+  /* openPdf(){
+    const options: DocumentViewerOptions = {
+      title: 'My PDF'}
+    //this.document.viewDocument('assets/'+namePdf, 'application/pdf', options)
+    this.document.viewDocument('www/assets/bibliography.pdf', 'application/pdf', options)
+    
+  } */
+  openPdf(namePdf){
+    let filePath=this.file.applicationDirectory+'www/assets';
+    if(this.platform.is('android')){
+      let fakeName=Date.now();
+      //this.file.copyFile(filePath, namePdf, this.file.dataDirectory,'${fakeName}.pdf').then(result=>{this.fileOpener.open(result.nativeURL,'application/pdf');});
+      this.file.copyFile(filePath, namePdf, this.file.dataDirectory,namePdf).then(result=>{this.fileOpener.open(result.nativeURL,'application/pdf');});
+    }else{
+      const options: DocumentViewerOptions = {title: 'My PDF'}
+    //this.document.viewDocument('${filePath}/'+namePdf, 'application/pdf', options);
+    this.document.viewDocument(filePath+'/'+namePdf, 'application/pdf', options);
+    }
+  }
+  
 }

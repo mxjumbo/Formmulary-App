@@ -16,13 +16,13 @@
   </ion-card-header>
 
   <ion-card-content #ccmm >
-    <ion-item >
+    <ion-item button (click)="openPdf('generaloverview.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/ageneraloverview.png">
       </ion-avatar>
-      <ion-label>Marine Mammals: a general overview</ion-label>
+      <ion-label >Marine Mammals: a general overview</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item button (click)="openPdf('challengesinmarinemammalsmedication.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/routes.png">
       </ion-avatar>
@@ -50,13 +50,13 @@
     </button>
   </ion-card-header>
   <ion-card-content #ccf >
-    <ion-item >
+    <ion-item button (click)="openPdf('userGuide.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/user_guide.jpg">
       </ion-avatar>
       <ion-label>User's guide</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item button (click)="openPdf('disclaimer.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/disclaimer.jpg">
       </ion-avatar>
@@ -68,7 +68,7 @@
       </ion-avatar>
       <ion-label>Authorship</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item button (click)="openPdf('support.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/support.png">
       </ion-avatar>
@@ -80,13 +80,13 @@
       </ion-avatar>
       <ion-label>Rate The App</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item button (click)="openPdf('bibliography.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/bibliography.png">
       </ion-avatar>
       <ion-label>Bibliography</ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item button (click)="openPdf('druglist.pdf')">
       <ion-avatar slot="start">
         <img src="assets/img/druglist.png">
       </ion-avatar>
