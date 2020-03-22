@@ -32,6 +32,7 @@
     "cordova-plugin-file-opener2": "^3.0.0",
     "core-js": "^2.5.4",
     "de.sitewaerts.cordova.documentviewer": "^0.2.2",
+    "ngx-autosize": "^1.7.5",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

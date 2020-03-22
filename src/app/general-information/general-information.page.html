@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>generalInformation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Título - Nombre del medicamento-->
+  <ion-item lines="none"> 
+    <ion-label class="ion-text-center">Atropine</ion-label>
+  </ion-item>
+
+  <!--Descripción del medicamento-->
+  <ion-item lines="none">   
+    <ion-label>Brief Description</ion-label>
+  </ion-item>
+  <ion-item lines="none">
+    <ion-textarea autosize [(ngModel)]="text">Lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et finibus ex. Vestibulum finibus magna ligula, laoreet maximus elit scelerisque non. Cras vitae ipsum congue, venenatis tortor id, aliquam metus. Nullam pulvinar sem a mauris venenatis pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec at turpis eu nisi accumsan rhoncus. Suspendisse potenti. Fusce tortor lacus, mattis eget eleifend nec, commodo ut neque. Maecenas vestibulum pulvinar fringilla. Vivamus luctus hendrerit odio, ut malesuada velit efficitur sed. Curabitur bibendum egestas ipsum, id interdum justo convallis vel. Morbi rutrum hendrerit erat, sed tempus nulla congue et. Integer blandit lorem viverra libero venenatis, sit amet euismod tortor tristique. In quis volutpat lorem. Integer eget sagittis ligula. Cras molestie purus in urna tincidunt, nec elementum elit vestibulum. Quisque varius, dui sed pharetra ullamcorper, eros urna porta turpis, vel iaculis eros nisi eu risus. Morbi at dolor facilisis, ullamcorper massa eu, dictum dui. Suspendisse sed interdum ligula. Suspendisse fringilla tempus aliquam. Suspendisse suscipit tortor eu tellus blandit, vitae laoreet diam euismod. Phasellus ornare metus id metus lobortis, at facilisis ex pellentesque. Maecenas sapien leo, auctor a vehicula in, suscipit at erat. Suspendisse efficitur, enim at semper blandit, nisi mauris luctus tellus, vitae mattis massa ante vel magna.</ion-textarea>
+  </ion-item>
+  <ion-item lines="none">   
+    <ion-label>Animals</ion-label>
+  </ion-item>
+
+  <!--Botones Grupo animal-->
+  <ion-row>
+    <ion-col size="4" class="ion-justify-content-around">
+      <ion-button  expand="block" color="secondary">CETACEANS</ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button expand="block" color="secondary">PINNIPEDS</ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button  expand="block" color="secondary">OTHER MM</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <!--Códigos-->
+  <ion-item lines="none">   
+    <ion-label>ATCvet Codes</ion-label>
+  </ion-item>
+  <ion-row>
+    <ion-col size="3" offset="4">
+      <ion-select [(ngModel)]="defaultValueSelect" interface="popover">
+        <ion-select-option  *ngFor="let item of listaCodigos" [value]="item" >{{item}}</ion-select-option>
+      </ion-select>
+    </ion-col>
+  </ion-row>
+
+  <!--Grupo anatómico-->
+  <ion-item lines="none">   
+    <ion-label>Action (Anatomical Target)</ion-label>
+  </ion-item>
+  <ion-item lines="none" >
+    <ion-textarea>Grupo anatómico </ion-textarea>
+  </ion-item>
+
+  <!--Grupo terapeútico-->
+  <ion-item lines="none">   
+    <ion-label>Action (Therapeutic Target)</ion-label>
+  </ion-item>
+  <ion-item lines="none" >
+    <ion-textarea>Grupo terapeútico </ion-textarea>
+  </ion-item>
+
+  <!--Medicamento disponible como genérico-->
+  <ion-item lines="none">   
+    <ion-label>Available as generic drug</ion-label>
+    <ion-icon name="checkmark"></ion-icon>
+  </ion-item>
+
+  <!--Licensias-->
+  <ion-item lines="none">   
+    <ion-label>License for vet use</ion-label>
+  </ion-item>
+  <ion-row>
+    <ion-col >
+      <ion-img src="assets/img/_food_and_drug.png"></ion-img>
+  </ion-col>
+  <ion-col  >
+      <ion-img src="assets/img/european_medicines_agency.png"></ion-img>
+    </ion-col>
+    <ion-col>
+      <ion-img src="assets/img/logo_aemps.png"></ion-img>
+    </ion-col>
+  </ion-row>
+  
+  <!--Checks licensias-->
+  <ion-row>
+    <ion-col size="4">
+      <p><ion-icon name="checkmark"></ion-icon></p>
+    </ion-col>
+    <ion-col size="4">
+      <p><ion-icon name="close"></ion-icon></p>
+    </ion-col>
+    <ion-col size="4">
+      <p><ion-icon name="help"></ion-icon></p>
+      </ion-col>
+  </ion-row>
+</ion-content>
