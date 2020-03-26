@@ -14,7 +14,12 @@ const routes: Routes = [
   {
     path: 'general-information',
     loadChildren: () => import('./general-information/general-information.module').then( m => m.GeneralInformationPageModule)
+  },
+  {
+    path: 'dose/:group',
+    loadChildren: () => import('./dose/dose.module').then( m => m.DosePageModule)
   }
+
 ];
 @NgModule({
   imports: [

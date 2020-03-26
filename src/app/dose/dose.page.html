@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>dose</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<!--Título - Nombre del medicamento-->
+<ion-item lines="none"> 
+  <ion-label class="ion-text-center ion-label-color">Atropine</ion-label>
+</ion-item>
+<ion-item lines="none"> 
+  <ion-label class="ion-text-center ion-label-color" >({{arguments}})</ion-label>
+</ion-item>
+<ion-grid>
+  <ion-row class="boldTitle">
+    <ion-col>Dose</ion-col>
+    <ion-col>Pos</ion-col>
+    <ion-col>Route</ion-col>
+    <ion-col>Ref</ion-col>
+    <ion-col>Note</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let itemDose of dosesList" >
+    <ion-col *ngFor="let item of itemDose" >{{item}}</ion-col>    
+  </ion-row>
+</ion-grid>
+<ion-item lines="none"> 
+  <ion-label>Specific Notes</ion-label>
+</ion-item>
+<ion-grid>
+  <ion-row *ngFor="let item of notesList" >{{item}}</ion-row>
+</ion-grid>
+</ion-content>
