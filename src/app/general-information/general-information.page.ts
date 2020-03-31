@@ -27,4 +27,8 @@ export class GeneralInformationPage implements OnInit {
 
     this.navCtrl.navigateForward(['/dose',group]);
   }
+
+  showDosePinnipeds(){
+    this.navCtrl.navigateForward(['/dose-pinnipeds']);
+  }
 }

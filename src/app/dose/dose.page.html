@@ -25,9 +25,15 @@
   </ion-row>
 </ion-grid>
 <ion-item lines="none"> 
+  <ion-label>General Notes</ion-label>
+</ion-item>
+<ion-grid>
+  <ion-row *ngFor="let item of notesListGeneral" >{{item}}</ion-row>
+</ion-grid>
+<ion-item lines="none"> 
   <ion-label>Specific Notes</ion-label>
 </ion-item>
 <ion-grid>
-  <ion-row *ngFor="let item of notesList" >{{item}}</ion-row>
+  <ion-row *ngFor="let item of notesListSpecific" >{{item}}</ion-row>
 </ion-grid>
 </ion-content>

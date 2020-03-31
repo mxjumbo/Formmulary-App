@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'dose/:group',
     loadChildren: () => import('./dose/dose.module').then( m => m.DosePageModule)
+  },  {
+    path: 'dose-pinnipeds',
+    loadChildren: () => import('./dose-pinnipeds/dose-pinnipeds.module').then( m => m.DosePinnipedsPageModule)
   }
+
 
 ];
 @NgModule({

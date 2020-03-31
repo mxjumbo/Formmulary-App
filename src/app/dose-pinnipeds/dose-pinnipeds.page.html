@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>dosePinnipeds</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Título - Nombre del medicamento-->
+<ion-item lines="none"> 
+  <ion-label class="ion-text-center ion-label-color">Atropine</ion-label>
+</ion-item>
+<ion-item lines="none"> 
+  <ion-label class="ion-text-center ion-label-color" >(Pinnipeds)</ion-label>
+</ion-item>
+  <ion-toolbar>
+    <ion-segment value="Otariids"color="secondary">
+      <ion-segment-button value="Odobenids">
+        <ion-label>Odobenids</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Otariids">
+        <ion-label>Otariids</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Phocids">
+        <ion-label>Phocids</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row class="boldTitle">
+      <ion-col>Dose</ion-col>
+      <ion-col>Pos</ion-col>
+      <ion-col>Route</ion-col>
+      <ion-col>Ref</ion-col>
+      <ion-col>Note</ion-col>
+    </ion-row>
+    <ion-row *ngFor="let itemDose of dosesList" >
+      <ion-col *ngFor="let item of itemDose" >{{item}}</ion-col>    
+    </ion-row>
+  </ion-grid>
+  <ion-item lines="none"> 
+    <ion-label>General Notes</ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let item of notesListGeneral" >{{item}}</ion-row>
+  </ion-grid>
+  <ion-item lines="none"> 
+    <ion-label>Specific Notes</ion-label>
+  </ion-item>
+  <ion-grid>
+    <ion-row *ngFor="let item of notesListSpecific" >{{item}}</ion-row>
+  </ion-grid>
+</ion-content>
