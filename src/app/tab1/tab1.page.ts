@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import {FilterCombinedSearchPageModule} from '../filter-combined-search/filter-combined-search.module'
 
 @Component({
   selector: 'app-tab1',
@@ -7,6 +9,12 @@ import { Component } from '@angular/core';
 })
 export class Tab1Page {
 
-  constructor() {}
+  constructor(public navCtrl:NavController) {}
+
+  showFilter(){
+    //this.router.navigate(['/general-information']);
+    this.navCtrl.navigateForward('/filter-combined-search');
+  }
 
 }
+

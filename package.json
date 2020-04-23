@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxyconf.json",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -32,6 +32,8 @@
     "cordova-plugin-file-opener2": "^3.0.0",
     "core-js": "^2.5.4",
     "de.sitewaerts.cordova.documentviewer": "^0.2.2",
+    "ionic-selectable": "^4.5.0",
+    "ionic4-auto-complete": "^1.10.1",
     "ngx-autosize": "^1.7.5",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

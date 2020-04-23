@@ -13,12 +13,14 @@ import { DocumentViewer } from '@ionic-native/document-viewer/ngx';
 import {File} from '@ionic-native/file/ngx';
 import {FileOpener}from '@ionic-native/file-opener/ngx';
 import { Platform } from '@ionic/angular';
-
+/* import { AutoCompleteModule } from 'ionic4-auto-complete'; */
+import { IonicSelectableModule } from 'ionic-selectable';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [HttpClientModule ,IonicSelectableModule,BrowserModule, IonicModule.forRoot(), AppRoutingModule],
   providers: [
     StatusBar,
     SplashScreen,

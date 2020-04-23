@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item (click)="showGeneralInformation(item.drug_name)" *ngFor="let item of drugList">{{item.drug_name}}</ion-item>
+    <!-- <ng-container>
+      <ion-label *ngIf="!drugList.length">No search results</ion-label>
+    </ng-container> -->
+
+  </ion-list>  
+  
+</ion-content>

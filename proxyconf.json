@@ -1,0 +1,7 @@
+{
+    "/android/*":{
+        "target":"http://www.formmulary.com",
+        "secure":false,
+        "changeOrigin":true
+    }
+}

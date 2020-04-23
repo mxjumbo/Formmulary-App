@@ -12,15 +12,24 @@ const routes: Routes = [
     loadChildren: () => import('./about/about.module').then( m => m.AboutPageModule)
   },
   {
-    path: 'general-information',
+    path: 'general-information/:nameDrug',
     loadChildren: () => import('./general-information/general-information.module').then( m => m.GeneralInformationPageModule)
   },
   {
     path: 'dose/:group',
     loadChildren: () => import('./dose/dose.module').then( m => m.DosePageModule)
-  },  {
+  },
+  {
     path: 'dose-pinnipeds',
     loadChildren: () => import('./dose-pinnipeds/dose-pinnipeds.module').then( m => m.DosePinnipedsPageModule)
+  },
+  {
+    path: 'filter-combined-search',
+    loadChildren: () => import('./filter-combined-search/filter-combined-search.module').then( m => m.FilterCombinedSearchPageModule)
+  },
+  {
+    path: 'drug-list/:therapeuticValue/:anatomicValue/:groupValue',
+    loadChildren: () => import('./drug-list/drug-list.module').then( m => m.DrugListPageModule)
   }
 
 

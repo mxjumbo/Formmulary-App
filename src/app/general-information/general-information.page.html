@@ -1,21 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>generalInformation</ion-title>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!--Título - Nombre del medicamento-->
   <ion-item lines="none"> 
-    <ion-label class="ion-text-center">Atropine</ion-label>
+    <ion-label class="ion-text-center">{{drug}}</ion-label>
   </ion-item>
 
   <!--Descripción del medicamento-->
   <ion-item lines="none">   
     <ion-label>Brief Description</ion-label>
   </ion-item>
-  <ion-item lines="none">
-    <ion-textarea autosize [(ngModel)]="text">Lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et finibus ex. Vestibulum finibus magna ligula, laoreet maximus elit scelerisque non. Cras vitae ipsum congue, venenatis tortor id, aliquam metus. Nullam pulvinar sem a mauris venenatis pretium. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec at turpis eu nisi accumsan rhoncus. Suspendisse potenti. Fusce tortor lacus, mattis eget eleifend nec, commodo ut neque. Maecenas vestibulum pulvinar fringilla. Vivamus luctus hendrerit odio, ut malesuada velit efficitur sed. Curabitur bibendum egestas ipsum, id interdum justo convallis vel. Morbi rutrum hendrerit erat, sed tempus nulla congue et. Integer blandit lorem viverra libero venenatis, sit amet euismod tortor tristique. In quis volutpat lorem. Integer eget sagittis ligula. Cras molestie purus in urna tincidunt, nec elementum elit vestibulum. Quisque varius, dui sed pharetra ullamcorper, eros urna porta turpis, vel iaculis eros nisi eu risus. Morbi at dolor facilisis, ullamcorper massa eu, dictum dui. Suspendisse sed interdum ligula. Suspendisse fringilla tempus aliquam. Suspendisse suscipit tortor eu tellus blandit, vitae laoreet diam euismod. Phasellus ornare metus id metus lobortis, at facilisis ex pellentesque. Maecenas sapien leo, auctor a vehicula in, suscipit at erat. Suspendisse efficitur, enim at semper blandit, nisi mauris luctus tellus, vitae mattis massa ante vel magna.</ion-textarea>
+  <ion-item lines="none">    
+    <!-- <ion-textarea autosize [(ngModel)]="text" *ngFor ="let item of info">{{item.description}}</ion-textarea> -->
+    <ion-textarea disabled="true" *ngFor ="let item of info">{{item.description}}</ion-textarea>
   </ion-item>
   <ion-item lines="none">   
     <ion-label>Animals</ion-label>
@@ -39,9 +43,9 @@
     <ion-label>ATCvet Codes</ion-label>
   </ion-item>
   <ion-row>
-    <ion-col size="3" offset="4">
-      <ion-select [(ngModel)]="defaultValueSelect" interface="popover">
-        <ion-select-option  *ngFor="let item of listaCodigos" [value]="item" >{{item}}</ion-select-option>
+    <ion-col size="6" offset="3">
+      <ion-select [(ngModel)]="valueSelectedCode" interface="popover" (ionChange)="fillGroups()">
+        <ion-select-option  *ngFor="let item of codes">{{item.code_number}}</ion-select-option>
       </ion-select>
     </ion-col>
   </ion-row>
@@ -51,7 +55,7 @@
     <ion-label>Action (Anatomical Target)</ion-label>
   </ion-item>
   <ion-item lines="none" >
-    <ion-textarea>Grupo anatómico </ion-textarea>
+    <ion-textarea [(ngModel)]="valueSelectedAnatomicGroup"></ion-textarea>
   </ion-item>
 
   <!--Grupo terapeútico-->
@@ -59,13 +63,16 @@
     <ion-label>Action (Therapeutic Target)</ion-label>
   </ion-item>
   <ion-item lines="none" >
-    <ion-textarea>Grupo terapeútico </ion-textarea>
+    <ion-textarea [(ngModel)]="valueSelectedTherapeuticGroup"></ion-textarea>
   </ion-item>
 
   <!--Medicamento disponible como genérico-->
   <ion-item lines="none">   
     <ion-label>Available as generic drug</ion-label>
-    <ion-icon name="checkmark"></ion-icon>
+    <ng-container *ngFor ="let item of info">
+      <ion-icon *ngIf="item.available==='Yes'" name="checkmark"></ion-icon>
+      <ion-icon *ngIf="item.available==='No'" name="close"></ion-icon>
+    </ng-container>
   </ion-item>
 
   <!--Licensias-->
@@ -87,13 +94,25 @@
   <!--Checks licensias-->
   <ion-row>
     <ion-col size="4">
-      <p><ion-icon name="checkmark"></ion-icon></p>
+      <ng-container *ngFor ="let item of info">
+        <p><ion-icon *ngIf="item.license_FDA==='Yes'" name="checkmark"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_FDA==='No'" name="close"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_FDA==='Nd'" name="help"></ion-icon></p>
+      </ng-container>
     </ion-col>
     <ion-col size="4">
-      <p><ion-icon name="close"></ion-icon></p>
+      <ng-container *ngFor ="let item of info">
+        <p><ion-icon *ngIf="item.license_EMA==='Yes'" name="checkmark"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_EMA==='No'" name="close"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_EMA==='Nd'" name="help"></ion-icon></p>
+      </ng-container>
     </ion-col>
     <ion-col size="4">
-      <p><ion-icon name="help"></ion-icon></p>
+      <ng-container *ngFor ="let item of info">
+        <p><ion-icon *ngIf="item.license_AEMPS==='Yes'" name="checkmark"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_AEMPS==='No'" name="close"></ion-icon></p>
+        <p><ion-icon *ngIf="item.license_AEMPS==='Nd'" name="help"></ion-icon></p>
+      </ng-container>
       </ion-col>
   </ion-row>
 </ion-content>

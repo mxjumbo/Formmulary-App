@@ -1,0 +1,98 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <!-- <ion-title >Combined Search</ion-title> -->
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+      <ion-card-content>
+        <ion-label>Therapeutic target</ion-label>
+        <ion-item>            
+          <ionic-selectable   
+            [(ngModel)]="therapeuticGroup"           
+            [items]="therapeuticGroups"
+            itemValueField="name"
+            itemTextField="name" 
+            [canSearch]="true"
+            (onChange)="groupChangeTherapeutic($event)"
+            [canClear]="true">
+            <ng-template ionicSelectablePlaceholderTemplate>
+              Enter a therapeutic target 
+            </ng-template>   
+            <ng-template ionicSelectableItemTemplate let-therapeuticGroup="item">
+              {{therapeuticGroup.name}}
+            </ng-template>
+          </ionic-selectable>
+        </ion-item>    
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      
+      <ion-label>Anatomical target</ion-label>
+      <ion-item>            
+        <ionic-selectable   
+          [(ngModel)]="anatomicGroup"           
+          [items]="anatomicGroups"
+          itemValueField="name"
+          itemTextField="name" 
+          [canSearch]="true"
+          (onChange)="groupChangeAnatomic($event)"
+          [canClear]="true">
+          <ng-template ionicSelectablePlaceholderTemplate>
+            Enter an anatomical target
+          </ng-template>   
+          <ng-template ionicSelectableItemTemplate let-anatomicGroup="item">
+            {{anatomicGroup.name}}
+          </ng-template>
+        </ionic-selectable>
+      </ion-item>    
+      <!-- <ion-item>
+      <ion-select  [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Choose an anatomical target">
+        <ion-select-option  *ngFor="let item of anatomicGroups"
+        >{{item.name}}
+        </ion-select-option>        
+      </ion-select>
+    </ion-item> -->
+      <!-- <ion-item>
+        <ion-label>Choose an anatomical target</ion-label>
+      </ion-item> -->
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-content>
+      <ion-label>Group</ion-label>
+      <ion-item>            
+        <ionic-selectable   
+          [(ngModel)]="animalGroup"           
+          [items]="animalGroups"
+          itemValueField="group_name"
+          itemTextField="group_name" 
+          
+          (onChange)="groupChangeGroup($event)"
+          [canClear]="true">
+          <ng-template ionicSelectablePlaceholderTemplate>
+            Choose a group
+          </ng-template>   
+          <ng-template ionicSelectableItemTemplate let-animalGroup="item">
+            {{animalGroup.group_name}}
+          </ng-template>
+        </ionic-selectable>
+      </ion-item>                    
+    </ion-card-content>
+  </ion-card>
+  <ion-row>
+    <ion-col center class="ion-text-center">
+  <ion-button (click)="search()">Search</ion-button>
+</ion-col>
+  </ion-row>
+<!--   <ion-buttons>
+    <ion-button color="primary">
+      Prueba
+    </ion-button>
+  </ion-buttons> -->
+</ion-content>
