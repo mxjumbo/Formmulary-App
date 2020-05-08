@@ -6,3 +6,12 @@
 .boldTitle{
     font-weight: bold;
 }
+
+.contador {
+    counter-reset: elemento;
+}
+
+.elemento:before {
+    counter-increment: elemento;
+    content: "("counter(elemento)")";
+}

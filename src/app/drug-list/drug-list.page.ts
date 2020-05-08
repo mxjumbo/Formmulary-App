@@ -48,10 +48,10 @@ info:DrugInfo;
     this.argument1=this.activeRoute.snapshot.paramMap.get('therapeuticValue');
     this.argument2=this.activeRoute.snapshot.paramMap.get('anatomicValue');
     this.argument3=this.activeRoute.snapshot.paramMap.get('groupValue');
-   /*  console.log(this.argument1);
+    /* console.log(this.argument1);
     console.log(this.argument2);
-    console.log(this.argument3);
-    */ 
+    console.log(this.argument3); */
+    
    this.filter.getDrugsByCombinedSearch(this.argument1,this.argument2,this.argument3).subscribe(res=> this.drugList=res);
    
   }

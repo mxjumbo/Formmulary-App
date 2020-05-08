@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {NavController} from '@ionic/angular';
@@ -9,15 +9,21 @@ import {NavController} from '@ionic/angular';
 })
 export class FilterCombinedSearchService {
   
-  urlTherapeuticGroup = '/android/getTherapeuticGroups.php';  
-  urlAnatomicGroup = '/android/getAnatomicGroups.php';  
-  urlAnimalGroup = '/android/getAnimalGroups.php';  
+  urlTherapeuticGroup = 'http://www.formmulary.com/android/getTherapeuticGroups.php';  
+  urlAnatomicGroup = 'http://www.formmulary.com/android/getAnatomicGroups.php';  
+  urlAnimalGroup = 'http://www.formmulary.com/android/getAnimalGroups.php';  
 
   constructor(private http: HttpClient) { 
 
   }
   
   getTherapeuticGroup(): Observable<any> {
+    
+       /* return this.http.get(`${this.urlTherapeuticGroup}`,{
+        headers: new HttpHeaders({'Content-Type': 'application/json' })
+
+       }); */
+       
       return this.http.get(`${this.urlTherapeuticGroup}`);
   }
 

@@ -26,10 +26,10 @@
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
-    "cordova-android": "8.1.0",
-    "cordova-plugin-document-viewer": "^0.9.13",
+    "cordova-android": "^8.1.0",
     "cordova-plugin-file": "^6.0.2",
     "cordova-plugin-file-opener2": "^3.0.0",
+    "cordova-plugin-whitelist": "^1.3.4",
     "core-js": "^2.5.4",
     "de.sitewaerts.cordova.documentviewer": "^0.2.2",
     "ionic-selectable": "^4.5.0",
@@ -59,7 +59,6 @@
     "cordova-plugin-ionic-webview": "^4.1.3",
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
-    "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -75,7 +74,6 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-statusbar": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
@@ -83,15 +81,13 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-document-viewer": {},
       "cordova-plugin-file": {},
       "cordova-plugin-file-opener2": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
-      "de.sitewaerts.cordova.documentviewer": {}
+      "de.sitewaerts.cordova.documentviewer": {},
+      "cordova-plugin-whitelist": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   }
 }

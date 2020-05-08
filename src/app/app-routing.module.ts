@@ -16,11 +16,11 @@ const routes: Routes = [
     loadChildren: () => import('./general-information/general-information.module').then( m => m.GeneralInformationPageModule)
   },
   {
-    path: 'dose/:group',
+    path: 'dose/:group/:drug',
     loadChildren: () => import('./dose/dose.module').then( m => m.DosePageModule)
   },
   {
-    path: 'dose-pinnipeds',
+    path: 'dose-pinnipeds/:group/:drug',
     loadChildren: () => import('./dose-pinnipeds/dose-pinnipeds.module').then( m => m.DosePinnipedsPageModule)
   },
   {

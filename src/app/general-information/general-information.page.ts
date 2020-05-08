@@ -18,6 +18,25 @@ class Codes{
   public anatomic_group_name:string;
   public therapeutic_group_name:string;
 }
+
+class DoseInfo{
+  public animal_name: string; 
+  public family: string;  
+  public group_name: string;  
+  public category_name: string;  
+  public book_reference: string;  
+  public article_reference: string; 
+  public specific_note: string;  
+  public posology: string;  
+  public route: string;  
+  public dose: string;    
+}
+
+class Note{
+  public group_name:string;
+  public general_note:string;
+}
+
 @Component({
   selector: 'app-general-information',
   templateUrl: './general-information.page.html',
@@ -36,6 +55,14 @@ export class GeneralInformationPage implements OnInit {
   valueSelectedTherapeuticGroup:string;
   indice:Number;
   element:Codes;
+  doses:DoseInfo[];
+  notes:Note[];
+  playingDosesGroup:boolean=true;
+  playingSpecificNotes:boolean=true;
+  playingGeneralNotes:boolean=true;
+  playingDosesOtariids:boolean=true;
+  playingDosesPhocids:boolean=true;
+  playingDosesOdobenids:boolean=true;
 
   //Se ha utilizado NavController para poder navegar
   constructor(public navCtrl:NavController, private activeRoute:ActivatedRoute,private filter: GeneralInformationService) {
@@ -48,34 +75,147 @@ export class GeneralInformationPage implements OnInit {
     this.drug=this.activeRoute.snapshot.paramMap.get('nameDrug');  
     
     this.filter.getGeneralInformation(this.drug).subscribe(res=> this.info=res);
-    this.filter.getInfoCodes(this.drug).subscribe(res=> this.codes=res);
+    this.filter.getInfoCodes(this.drug).subscribe(res=> this.codes=res);    
     setTimeout(() => {
       this.valueSelectedCode = this.codes[0].code_number;
-    }, 1000);
+    }, 500);  
+    this.filter.getDoseInformation(this.drug).subscribe(res=>this.doses=res);
+    this.filter.getGeneralNotes(this.drug).subscribe(res=>this.notes=res);
   }
 
   showDoseInfo(group){
-    //this.router.navigate(['/dose',this.prueba]);
+    //this.router.navigate(['/dose',this.prueba]);   
+    let tmpDoses: DoseInfo[]=[];
+    this.doses.forEach(x =>{if(x.group_name=== group) tmpDoses.push(x)});    
+    this.filter.setInfoDoses(tmpDoses);
+    //console.log(tmpDoses);
 
-    this.navCtrl.navigateForward(['/dose',group]);
+    let tmpNotes: Note[]=[];
+    this.notes.forEach(x =>{if(x.group_name=== group) tmpNotes.push(x)});    
+    this.filter.setInfoNotes(tmpNotes);
+    //console.log(tmpNotes);
+
+    this.existDosesByGroup(group);    
+    this.filter.setPlayingDosesGroup(this.playingDosesGroup);
+
+    this.existGeneralNotes(group);
+    this.filter.setPlayingGeneralNotes(this.playingGeneralNotes);
+
+    this.existSpecificNotes(group);
+    this.filter.setPlayingSpecificNotes(this.playingSpecificNotes);
+
+    this.navCtrl.navigateForward(['/dose',group,this.drug]);
   }
 
-  showDosePinnipeds(){
-    this.navCtrl.navigateForward(['/dose-pinnipeds']);
-  }
+  showDosePinnipeds(group){
+    let tmpDosesOtariids: DoseInfo[]=[];
+    this.doses.forEach(x =>{if(x.group_name=== group && x.family==="Otariids") tmpDosesOtariids.push(x)});    
+    this.filter.setInfoDosesOtariids(tmpDosesOtariids);
+    //console.log(this.doses);
 
-  /* fillGroups(event: {
-    component: IonicSelectableComponent,
-    value: any}){
-    //this.anatomicGroup=this.codes.findIndex(selectedCode);
-    this.indice=this.codes.findIndex(x => x.code_number=== event.value.code_number);
-    console.log(this.indice);
-    console.log(event.value.code_number);
-  } */
+    let tmpDosesPhocids: DoseInfo[]=[];
+    this.doses.forEach(x =>{if(x.group_name=== group && x.family==="Phocids") tmpDosesPhocids.push(x)});    
+    this.filter.setInfoDosesPhocids(tmpDosesPhocids);
+
+    let tmpDosesOdobenids: DoseInfo[]=[];
+    this.doses.forEach(x =>{if(x.group_name=== group && x.family==="Odobenids") tmpDosesOdobenids.push(x)});    
+    this.filter.setInfoDosesOdobenids(tmpDosesOdobenids);
+    
+    let tmpNotes: Note[]=[];
+    this.notes.forEach(x =>{if(x.group_name=== group) tmpNotes.push(x)});    
+    this.filter.setInfoNotes(tmpNotes);
+    
+    this.existDosesByFamily("Otariids");    
+    this.filter.setPlayingDosesFamily(this.playingDosesOtariids);
+
+    this.existDosesByFamily("Odobenids");    
+    this.filter.setPlayingDosesFamily(this.playingDosesOdobenids);
+
+    this.existDosesByFamily("Phocids");    
+    this.filter.setPlayingDosesFamily(this.playingDosesPhocids);
+
+    this.existGeneralNotes(group);    
+    this.filter.setPlayingGeneralNotes(this.playingGeneralNotes);
+
+    this.existSpecificNotes(group);
+    this.filter.setPlayingSpecificNotes(this.playingSpecificNotes);
+
+    this.navCtrl.navigateForward(['/dose-pinnipeds',group,this.drug]);
+    
+  }
 
   fillGroups(){
     this.valueSelectedAnatomicGroup=this.codes.find(x =>x.code_number=== this.valueSelectedCode).anatomic_group_name;
     this.valueSelectedTherapeuticGroup=this.codes.find(x =>x.code_number=== this.valueSelectedCode).therapeutic_group_name;
     //console.log(this.valueSelectedAnatomicGroup);    
+  }
+
+  public existSpecificNotes(group){
+    let contador:number=0;
+    this.doses.forEach(x =>{if(x.specific_note!=='' && x.group_name=== group) contador++}); 
+    if(contador===0)
+      this.playingSpecificNotes=false;
+    else
+      this.playingSpecificNotes=true;
+     /* console.log(this.playingSpecificNotes); 
+    console.log(contador);
+    console.log("parámetro:"+group);        */
+  }
+
+  public existGeneralNotes(group){
+    let contador:number=0;
+    this.notes.forEach(x =>{if(x.general_note!=='' && x.group_name=== group) contador++});
+    if(contador===0)   
+      this.playingGeneralNotes=false;
+    else
+      this.playingGeneralNotes=true;
+  }
+
+  public existDosesByGroup(group){
+    let contador:number=0;
+    if(this.doses.length===0){
+      this.playingDosesGroup=false;
+      console.log(this.doses.length)
+    }
+    else{
+      this.doses.forEach(x =>{if(x.group_name=== group) contador++}); 
+      if(contador===0)
+        this.playingDosesGroup=false;
+      else
+        this.playingDosesGroup=true;
+    }
+      /* console.log(this.playingDoses); 
+    console.log(contador);
+    console.log("parámetro:"+group);        */
+  }
+
+  public existDosesByFamily(family){
+    let contador:number=0;
+    if(this.doses.length===0){
+      this.playingDosesOtariids=false;
+      this.playingDosesOdobenids=false;
+      this.playingDosesPhocids=false;
+      console.log("No hay dosis para este medicamento")
+    }
+    else{
+      this.doses.forEach(x =>{if(x.group_name=== 'Pinnipeds' && x.family===family) contador++}); 
+      if(family==='Otariids' && contador===0)
+        this.playingDosesOtariids=false;
+      else
+        this.playingDosesOtariids=true;
+
+      if(family==='Odobenids' && contador===0)
+        this.playingDosesOdobenids=false;
+      else
+        this.playingDosesOdobenids=true;
+
+      if(family==='Phocids' && contador===0)
+        this.playingDosesPhocids=false;
+      else
+        this.playingDosesPhocids=true;
+    }
+      /* console.log(this.playingDoses); 
+    console.log(contador);
+    console.log("parámetro:"+group);        */
   }
 }

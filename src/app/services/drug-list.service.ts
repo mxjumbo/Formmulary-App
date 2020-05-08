@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,24 +7,19 @@ import { Observable } from 'rxjs';
 })
 export class DrugListService {
 
-  urlCombinedSearch = '/android/getDrugsByCombinedSearch.php';  
-  
+  urlCombinedSearch = 'http://www.formmulary.com/android/getDrugsByCombinedSearch.php';  
+  config = {
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
+    }
 
   constructor(private http: HttpClient) { }
 
-  getDrugsByCombinedSearch(therap,anat,gr): Observable<any> {
+  getDrugsByCombinedSearch(therap,anat,gr): Observable<any> {    
+  
     return this.http.post(`${this.urlCombinedSearch}`, {
-      /* therapeutic: '',
-      anatomical: 'QA Alimentary tract and metabolism',      
-      group:'Choose a group' */
       therapeutic: therap,
       anatomical: anat,      
       group:gr
-  })
+    },this.config)
   }
-
-  }
-
-//Anatomic: QV Various
-  //Therapeutic: QJ51
-  //Cetaceans
+}

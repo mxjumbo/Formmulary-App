@@ -1,52 +1,77 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dosePinnipeds</ion-title>
+    <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content>  
   <!--Título - Nombre del medicamento-->
 <ion-item lines="none"> 
-  <ion-label class="ion-text-center ion-label-color">Atropine</ion-label>
+  <ion-label class="ion-text-center ion-label-color">{{drug}}</ion-label>
 </ion-item>
 <ion-item lines="none"> 
   <ion-label class="ion-text-center ion-label-color" >(Pinnipeds)</ion-label>
 </ion-item>
   <ion-toolbar>
-    <ion-segment value="Otariids"color="secondary">
-      <ion-segment-button value="Odobenids">
-        <ion-label>Odobenids</ion-label>
+    <ion-segment value="Otariids"color="secondary">      
+      <ion-segment-button value="Odobenids" (click)="doRefresh('Odobenids')">
+        <ion-label>Odobenids</ion-label>        
       </ion-segment-button>
-      <ion-segment-button value="Otariids">
+      <ion-segment-button value="Otariids" (click)="doRefresh('Otariids')">
         <ion-label>Otariids</ion-label>
       </ion-segment-button>
-      <ion-segment-button value="Phocids">
+      <ion-segment-button value="Phocids" (click)="doRefresh('Phocids')">
         <ion-label>Phocids</ion-label>
       </ion-segment-button>
     </ion-segment>
   </ion-toolbar>
-  <ion-grid>
-    <ion-row class="boldTitle">
-      <ion-col>Dose</ion-col>
-      <ion-col>Pos</ion-col>
-      <ion-col>Route</ion-col>
-      <ion-col>Ref</ion-col>
-      <ion-col>Note</ion-col>
-    </ion-row>
-    <ion-row *ngFor="let itemDose of dosesList" >
-      <ion-col *ngFor="let item of itemDose" >{{item}}</ion-col>    
-    </ion-row>
+  <ion-grid *ngIf="playingDosesFamily">
+    <ion-label>{{playingDosesFamily}}</ion-label>
+    <!-- <ion-row> -->
+      <ion-item class="boldTitle ion-text-center" > 
+      <ion-col class="ion-justify-content-around">Dose</ion-col>
+      <ion-col class="ion-justify-content-around">Pos</ion-col>
+      <ion-col class="ion-justify-content-around">Route</ion-col>
+      <ion-col class="ion-justify-content-around">Ref</ion-col>
+      <ion-col class="ion-justify-content-around">Note</ion-col>
+    </ion-item>
+    <!-- </ion-row >  -->
+    <div class="contador">
+      <ion-item *ngFor="let item of dosesList" >
+        <ion-col class="ion-text-center">{{item.dose}}</ion-col>      
+        <ion-col class="ion-justify-content-around">{{item.posology}}</ion-col>
+        <ion-col class="ion-justify-content-around">{{item.route}}</ion-col>
+        <ion-col class="ion-justify-content-around">{{item.book_reference}}</ion-col>
+        <!-- <ion-col class="ion-justify-content-around" *ngIf="item.specific_note===''">({{indexOfelement+1}})</ion-col> -->      
+        <ion-col class="ion-justify-content-around " *ngIf="item.specific_note===''; else show"></ion-col>
+        <ng-template #show >
+          <ion-col class="elemento ion-justify-content-around"></ion-col>      
+        </ng-template>
+    </ion-item>
+  </div> 
   </ion-grid>
-  <ion-item lines="none"> 
-    <ion-label>General Notes</ion-label>
+  <ion-item lines="none" *ngIf="playingGeneralNotes"> 
+    <ion-label class="boldTitle">General Notes</ion-label>
   </ion-item>
-  <ion-grid>
-    <ion-row *ngFor="let item of notesListGeneral" >{{item}}</ion-row>
+  <ion-grid>  
+      <ion-item *ngFor="let item of notes" >{{item.general_note}}</ion-item>
   </ion-grid>
-  <ion-item lines="none"> 
-    <ion-label>Specific Notes</ion-label>
+  <ion-item lines="none" *ngIf="playingSpecificNotes"> 
+    <ion-label class="boldTitle">Specific Notes</ion-label>
   </ion-item>
-  <ion-grid>
-    <ion-row *ngFor="let item of notesListSpecific" >{{item}}</ion-row>
+  <ion-grid class="contador">  
+    <div  *ngFor="let item of dosesList">
+      <ion-item  *ngIf="item.specific_note!==''">
+        <ion-col  class="elemento ion-justify-content-around" > {{item.specific_note}}</ion-col>
+        <!-- <ion-col class="ion-justify-content-around " *ngIf="item.specific_note===''; else show"></ion-col>
+        <ng-template #show >
+          <ion-col class="elemento ion-justify-content-around">{{item.specific_note}}</ion-col>       
+        </ng-template>      -->
+      </ion-item>
+    </div>
   </ion-grid>
-</ion-content>
+  </ion-content>
+  
