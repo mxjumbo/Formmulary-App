@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Drug } from '../models/drug';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,8 @@ export class DrugListService {
     headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
     }
 
+    private url = environment.url;
+
   constructor(private http: HttpClient) { }
 
   getDrugsByCombinedSearch(therap,anat,gr): Observable<any> {    
@@ -21,5 +25,9 @@ export class DrugListService {
       anatomical: anat,      
       group:gr
     },this.config)
+  }
+
+  getAllDrugs() {
+    return this.http.get<Drug[]>(`${this.url}`);
   }
 }

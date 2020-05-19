@@ -31,7 +31,15 @@ const routes: Routes = [
     path: 'drug-list/:therapeuticValue/:anatomicValue/:groupValue',
     loadChildren: () => import('./drug-list/drug-list.module').then( m => m.DrugListPageModule)
   }
-
+  ,
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'single-search',
+    loadChildren: () => import('./single-search/single-search.module').then( m => m.SingleSearchPageModule)
+  }
 
 ];
 @NgModule({

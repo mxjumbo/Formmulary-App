@@ -1,0 +1,23 @@
+<ion-header no-border>
+  <ion-toolbar>
+    
+    <ion-buttons slot="start">    
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+
+    <ion-searchbar (ionChange)="search($event)"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+
+    <ion-item button (click)="showGeneralInformation(drug)" detail="false" *ngFor="let drug of drugs | filter: drugSearch: 'drug_name'" >
+      <!--<ion-icon slot="end" name="heart"></ion-icon>-->
+      <ion-label> {{ drug.drug_name }}  </ion-label>
+    </ion-item>
+    
+  </ion-list>
+
+</ion-content>
