@@ -13,11 +13,11 @@ class DrugInfo {
   public license_FDA: string;
 }
 
-class Codes{
+ class Codes{
   public code_number:string;
   public anatomic_group_name:string;
   public therapeutic_group_name:string;
-}
+} 
 
 class DoseInfo{
   public animal_name: string; 
@@ -54,7 +54,7 @@ export class GeneralInformationPage implements OnInit {
   valueSelectedAnatomicGroup:string;
   valueSelectedTherapeuticGroup:string;
   indice:Number;
-  element:Codes;
+  //element:Codes;
   doses:DoseInfo[];
   notes:Note[];
   playingDosesGroup:boolean=true;
@@ -68,17 +68,16 @@ export class GeneralInformationPage implements OnInit {
   constructor(public navCtrl:NavController, private activeRoute:ActivatedRoute,private filter: GeneralInformationService) {
     
     
-    
   }
 
   ngOnInit() {
-    this.drug=this.activeRoute.snapshot.paramMap.get('nameDrug');  
     
+    this.drug=this.activeRoute.snapshot.paramMap.get('nameDrug');  
     this.filter.getGeneralInformation(this.drug).subscribe(res=> this.info=res);
     this.filter.getInfoCodes(this.drug).subscribe(res=> this.codes=res);    
     setTimeout(() => {
       this.valueSelectedCode = this.codes[0].code_number;
-    }, 500);  
+    }, 500);   
     this.filter.getDoseInformation(this.drug).subscribe(res=>this.doses=res);
     this.filter.getGeneralNotes(this.drug).subscribe(res=>this.notes=res);
   }

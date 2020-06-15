@@ -20,6 +20,11 @@ class Note{
   public general_note:string;
 }
 
+class Codes{
+  public code_number:string;
+  public anatomic_group_name:string;
+  public therapeutic_group_name:string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -40,13 +45,13 @@ export class GeneralInformationService {
   dosesOtariids:DoseInfo[];
   dosesOdobenids:DoseInfo[];
   notes:Note[];
-  playingDoses:boolean;
+  playingDosesGroup:boolean;
   playingSpecificNotes:boolean;
   playingGeneralNotes:boolean;
   playingDosesOtariids:boolean;
   playingDosesPhocids:boolean;
   playingDosesOdobenids:boolean;
-
+  codes:Codes[];
 
   constructor(private http: HttpClient) { }
 
@@ -131,11 +136,11 @@ export class GeneralInformationService {
   }
 
   public setPlayingDosesGroup(param){    
-    this.playingDoses=param;
+    this.playingDosesGroup=param;
   }
 
   public getPlayingDosesGroup() {
-    return this.playingDoses;
+    return this.playingDosesGroup;
   }
 
   public setPlayingDosesFamily(param){ 
@@ -158,4 +163,5 @@ export class GeneralInformationService {
   public getPlayingDosesFamilyPhocids() {
     return this.playingDosesPhocids;
   }
+
 }

@@ -1,0 +1,90 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calculator</ion-title>
+  </ion-toolbar>
+</ion-header>
+<!-------------------------- Body Weight (Lbs) --------------------------->
+<ion-content>
+<ion-card>
+  <ion-row class="bold">
+    <ion-col class="ion-text-center">
+      Body Weight (in Lbs)
+    </ion-col>
+  </ion-row>  
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-input [(ngModel)]="weight_lbs" type="number" placeholder="Enter weight (Lbs)" (ionChange)="calculateKgs()" (ionFocus)="lockedKgs()"></ion-input>    
+    </ion-col>    
+  </ion-row>
+</ion-card>
+<!-------------------------- Body Weight (Kgs) --------------------------->
+<ion-card>
+  <ion-row class="bold">
+    <ion-col class="ion-text-center">
+      Body Weight (in Kgs)
+    </ion-col>    
+  </ion-row>  
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-input [(ngModel)]="weight_kgs" type="number" placeholder="Enter weight (Kgs)" (ionChange)="calculateLbs()" (ionFocus)="unlockedKgs()"></ion-input>    
+    </ion-col>    
+  </ion-row>
+</ion-card>
+
+<!-------------------------- Doses --------------------------->
+<ion-card>
+  <ion-row class="bold">
+    <ion-col class="ion-text-center">   
+      <ion-label>Dose (per Kg)</ion-label> 
+    </ion-col>
+  </ion-row>
+  <ion-row >  
+    <ion-col class="ion-text-center">   
+      <ion-input [(ngModel)]="dose" type="number" pattern="\d*" placeholder="Enter dose"></ion-input>     
+    </ion-col>  
+    <ion-col class="ion-text-center">
+        <ion-select [(ngModel)]="defaultUnitDose" interface="popover">
+          <ion-select-option  *ngFor="let item of unitDose">{{item}}</ion-select-option>
+        </ion-select>    
+    </ion-col>
+  </ion-row>
+</ion-card>
+<!-------------------------- Concentration --------------------------->
+<ion-card>
+  <ion-row class="bold">
+    <ion-col class="ion-text-center">   
+      <ion-label>Concentration</ion-label> 
+    </ion-col>
+  </ion-row>
+  <ion-row>  
+    <ion-col class="ion-text-center">   
+      <ion-input [(ngModel)]="concentration" type="number" pattern="\d*" placeholder="Enter concentration"></ion-input>     
+    </ion-col>  
+    <ion-col class="ion-text-center">
+        <ion-select [(ngModel)]="defaultUnitConcentration" interface="popover">
+          <ion-select-option  *ngFor="let item of unitConcentration">{{item}}</ion-select-option>
+        </ion-select>    
+    </ion-col>
+  </ion-row>
+</ion-card>
+</ion-content>
+<!-------------------------Resultado------------------->
+<ion-row *ngIf="visible">
+  <ion-col size="8" offset="2" class="ion-text-center">
+    <ion-card >
+      <ion-card-header class="bold">
+        Results
+      </ion-card-header>
+      <ion-card-content>
+        <ion-label >{{resultValue}}</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+</ion-row>
+<ion-footer no-border >
+  <ion-toolbar >
+    <ion-button expand="block" (click)="calculate()">
+      Calculate
+    </ion-button>    
+  </ion-toolbar>
+</ion-footer>

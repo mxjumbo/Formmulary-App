@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {DrugListService} from '../services/drug-list.service';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { GeneralInformationService } from '../services/general-information.service';
 
 class Drug {  
   public drug_name: string;
@@ -15,6 +16,7 @@ class DrugInfo {
   public license_EMA: string;
   public license_FDA: string;
 }
+
 
 @Component({
   selector: 'app-drug-list',
@@ -33,7 +35,7 @@ argument3=null;
 empty=false;
 info:DrugInfo;
 
-  constructor(private filter: DrugListService,private activeRoute:ActivatedRoute, private navCtrl:NavController ) { 
+  constructor(private filter: DrugListService, private activeRoute:ActivatedRoute, private navCtrl:NavController ) { 
     /* this.filter.getDrugsByCombinedSearch(this.argument1,this.argument2,this.argument3).subscribe(res=> this.drugList=res);
     console.log(this.drugList);
     console.log(this.argument1);
@@ -57,12 +59,11 @@ info:DrugInfo;
   }
 
   showGeneralInformation(drug){
-    //this.filter.getGeneralInformation(drug).subscribe(res=> this.info=res);    
+    this.navCtrl.navigateForward(['/general-information',drug]);     
     
-    this.navCtrl.navigateForward(['/general-information',drug]); 
+    
+    
   }
-
-  
   //Anatomic: QV Various
   //Therapeutic: QJ51
   //Cetaceans

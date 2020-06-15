@@ -39,7 +39,11 @@ const routes: Routes = [
   {
     path: 'single-search',
     loadChildren: () => import('./single-search/single-search.module').then( m => m.SingleSearchPageModule)
+  },  {
+    path: 'calculator',
+    loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule)
   }
+
 
 ];
 @NgModule({
