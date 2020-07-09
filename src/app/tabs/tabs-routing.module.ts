@@ -58,12 +58,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+        path: 'report-your-experience',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../report-your-experience/report-your-experience.module').then(m => m.ReportYourExperiencePageModule)
           }
         ]
       },      

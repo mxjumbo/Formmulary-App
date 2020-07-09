@@ -26,3 +26,20 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import "~ionic4-auto-complete/auto-complete";
+
+//Para que el texto de cada opción (profesiones en report youtr experience) se muestre en doble fila si es necesario 
+/* .item.sc-ion-label-md-h, .item .sc-ion-label-md-h{
+    white-space: normal !important;
+} */
+
+.sc-ion-label-md-h{
+    white-space: normal !important;
+}
+
+//Para que las opciones de las profesiones ocupen todo el ancho de la pantalla
+.popover-content {
+    --min-width: 100%; 
+    white-space: normal !important;
+}
+
+

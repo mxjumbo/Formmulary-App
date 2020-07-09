@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Report your Experience</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>    
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()" novalidate>    
+    <ion-item lines="full">
+      <ion-icon class="ion-padding-end" name="person"></ion-icon>
+      <ion-input formControlName="name" type="text" required placeholder=" Name"></ion-input>
+    </ion-item>  
+
+    <ion-item lines="full" width="100%">
+      <ion-icon class="ion-padding-end" name="mail"></ion-icon>
+      <ion-input formControlName="email" type="email" required placeholder="Contact email"></ion-input>
+    </ion-item>
+
+    <ion-item class="ion-text-wrap" lines="full">        
+      <ion-icon name="bookmark"></ion-icon>
+      <ion-select formControlName="prof" placeholder="Select your profession" interface="popover">
+        <ion-select-option *ngFor="let item of professions">{{item}}</ion-select-option>
+      </ion-select>      
+    </ion-item>
+
+    <ion-item lines="none" >      
+      <ion-textarea  formControlName="bodyMessage" class="gradiente" placeholder="Enter your experience" rows=15></ion-textarea>      
+    </ion-item>      
+  </form>  
+</ion-content>
+
+<ion-footer no-border >
+  <ion-toolbar >
+    <ion-button type="submit" color="primary" expand="block" (click)="sendMail()">Submit</ion-button>
+  </ion-toolbar>
+</ion-footer>

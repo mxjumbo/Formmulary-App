@@ -42,6 +42,10 @@ const routes: Routes = [
   },  {
     path: 'calculator',
     loadChildren: () => import('./calculator/calculator.module').then( m => m.CalculatorPageModule)
+  },
+  {
+    path: 'report-your-experience',
+    loadChildren: () => import('./report-your-experience/report-your-experience.module').then( m => m.ReportYourExperiencePageModule)
   }
 
 

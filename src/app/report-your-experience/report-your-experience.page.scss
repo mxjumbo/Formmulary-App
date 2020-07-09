@@ -1,0 +1,53 @@
+/* ion-textarea{
+    border:  1px;
+} */
+
+
+//.user-email-input {
+.gradiente{
+     max-width: 250px;
+    padding: 1rem;
+    //color: white;
+    border: 3px solid;    
+    //border-style: solid;        
+    //border-image: linear-gradient(to bottom,var(--ion-color-primary),rgba(0, 0, 0, 0)) 1 100%; 
+    border-image: linear-gradient(to bottom, var(--ion-color-primary), white) 1 100%; 
+    //border-image: linear-gradient(to bottom, var(--ion-color-primary), white) 1 stretch; 
+    /* border: 10px solid red;
+    border-bottom: 10px solid red;
+border-left-width: 0;
+border-right-width: 0;
+border-image: linear-gradient(to right, red, violet) 1 stretch; */
+
+
+
+
+    /* max-width: 250px;
+  padding: 1rem;
+  position: relative;  
+  background: linear-gradient(to right, var(--ion-color-primary), black);
+  padding: 3px; */
+  }
+
+  /* .item-fill-space { 
+    width: 100% !important; 
+    max-width: 100% !important;  
+    } */
+
+    ion-select { 
+        width: 100% !important; 
+        max-width: 100% !important;  
+        }
+
+        /* ion-select-option { 
+            width: 100% !important; 
+            max-width: 100% !important;  
+            } */
+
+    ion-textarea{
+        width: 100% !important; 
+        max-width: 100% !important;  
+    }
+    
+  
+    

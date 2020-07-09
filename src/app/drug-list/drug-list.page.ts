@@ -8,14 +8,14 @@ class Drug {
   public drug_name: string;
 }
 
-class DrugInfo {  
+/* class DrugInfo {  
   public drug_name: string;
   public description: string;
   public available: string;
   public license_AEMPS: string;
   public license_EMA: string;
   public license_FDA: string;
-}
+} */
 
 
 @Component({
@@ -33,7 +33,7 @@ argument2=null;
 argument3=null;
 
 empty=false;
-info:DrugInfo;
+//info:DrugInfo;
 
   constructor(private filter: DrugListService, private activeRoute:ActivatedRoute, private navCtrl:NavController ) { 
     /* this.filter.getDrugsByCombinedSearch(this.argument1,this.argument2,this.argument3).subscribe(res=> this.drugList=res);

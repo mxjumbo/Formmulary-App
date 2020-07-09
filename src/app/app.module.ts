@@ -16,6 +16,7 @@ import { Platform } from '@ionic/angular';
 /* import { AutoCompleteModule } from 'ionic4-auto-complete'; */
 import { IonicSelectableModule } from 'ionic-selectable';
 import { HttpClientModule } from '@angular/common/http';
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy, },
-    DocumentViewer,File, FileOpener, Platform
+    DocumentViewer,File, FileOpener, Platform, EmailComposer
   ],
   bootstrap: [AppComponent]
 })
